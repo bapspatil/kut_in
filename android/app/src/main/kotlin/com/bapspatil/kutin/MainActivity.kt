@@ -1,4 +1,4 @@
-package com.bapspatil.kutin.kut_in
+package com.bapspatil.kutin
 
 import android.os.Bundle
 
