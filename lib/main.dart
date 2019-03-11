@@ -2,18 +2,21 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'quote.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Kut In',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Kut In'),
     );
   }
 }
@@ -28,12 +31,34 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  String _quote;
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
+  Future<String> getQuote() async {
+    String baseUrl = 'http://api.kanye.rest/';
+    try {
+      http.Response response = await http.get(baseUrl);
+      Map quoteMap = jsonDecode(response.body);
+      var myQuote = Quote.fromJson(quoteMap);
+      setState(() {
+        _quote = myQuote.quote;
+      });
+      return myQuote.quote;
+    } catch (e) {
+      e.toString();
+      return null;
+    }
+  }
+
+  void _getNewQuote() {
+    setState(() async {
+      getQuote();
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    this.getQuote();
   }
 
   @override
@@ -42,25 +67,31 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-              style: Theme.of(context).textTheme.display2,
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
+      body: Padding(
+        padding: const EdgeInsets.all(32.0),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                '$_quote',
+                style: Theme.of(context).textTheme.display2,
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Text(
+                  '- Kanye West',
+                  style: Theme.of(context).textTheme.title,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+        onPressed: _getNewQuote,
+        tooltip: 'New Quote',
+        child: Icon(Icons.refresh),
       ),
     );
   }
