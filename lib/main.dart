@@ -5,9 +5,7 @@ import 'dart:math';
 import 'package:http/http.dart' as http;
 import 'quote.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
@@ -17,8 +15,8 @@ class MyApp extends StatelessWidget {
       title: 'Kut In',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        fontFamily: 'Imperator',
       ),
-      darkTheme: ThemeData.dark(),
       home: MyHomePage(),
     );
   }
@@ -63,9 +61,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _getNewQuote() {
-    setState(() async {
-      getQuote();
+    setState(() {
+      _quote = null;
     });
+    getQuote();
   }
 
   @override
@@ -98,9 +97,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text(
                     'KUT IN',
                     style: TextStyle(
-                      color: Colors.grey,
+                      color: Color(0xffeeeeee),
                       fontSize: 18.0,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
@@ -113,7 +111,6 @@ class _MyHomePageState extends State<MyHomePage> {
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 34.0,
-                              fontWeight: FontWeight.bold,
                               height: 1.25,
                             ),
                           )
@@ -123,7 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Text(
                   '- Kanye West',
                   style: TextStyle(
-                    color: Colors.grey,
+                    color: Color(0xffeeeeee),
                     fontSize: 18.0,
                   ),
                 ),

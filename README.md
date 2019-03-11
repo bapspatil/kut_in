@@ -1,7 +1,7 @@
 
-# kut_in
+# Kut In
 
-A Flutter app that interrupts you in the morning with amazing quote notifications.
+A Flutter app that shows random, wise Kanye West quotes.
 
 ## Developed By
 

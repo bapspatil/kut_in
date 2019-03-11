@@ -37,7 +37,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.bapspatil.kutin"
+        applicationId "com.bapspatil.kutin.kut_in"
         minSdkVersion 16
         targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()
