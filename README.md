@@ -3,6 +3,15 @@
 
 A Flutter app that shows random, wise Kanye West quotes.
 
+## Screenshots
+
+<img src="./assets/screen0.png" width="35%">&ensp;<img src="./assets/screen1.png" width="35%">
+
+## Packages Used
+
+* [http](https://pub.dartlang.org/packages/http)
+* [flutter_launcher_icons](https://pub.dartlang.org/packages/flutter_launcher_icons)
+
 ## Developed By
 
 Bapusaheb Patil
