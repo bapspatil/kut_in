@@ -19,15 +19,13 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       darkTheme: ThemeData.dark(),
-      home: MyHomePage(title: 'Kut In'),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
+  MyHomePage({Key key}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -52,8 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
     String baseUrl = 'http://api.kanye.rest/';
     try {
       http.Response response = await http.get(baseUrl);
-      Map quoteMap = jsonDecode(response.body);
-      var myQuote = Quote.fromJson(quoteMap);
+      var myQuote = Quote.fromJson(jsonDecode(response.body));
       setState(() {
         _quote = myQuote.quote;
         _colorOne = _gradientColors[_random.nextInt(_gradientColors.length)];
@@ -61,7 +58,6 @@ class _MyHomePageState extends State<MyHomePage> {
       });
       return myQuote.quote;
     } catch (e) {
-      e.toString();
       return null;
     }
   }
