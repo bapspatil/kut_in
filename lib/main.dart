@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:convert';
+import 'dart:math';
 import 'package:http/http.dart' as http;
 import 'quote.dart';
 
@@ -12,10 +13,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Kut In',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      darkTheme: ThemeData.dark(),
       home: MyHomePage(title: 'Kut In'),
     );
   }
@@ -32,6 +35,18 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String _quote;
+  List<Color> _gradientColors = [
+    const Color(0xfff44336),
+    const Color(0xffba000d),
+    const Color(0xff9c27b0),
+    const Color(0xff6a0080),
+    const Color(0xff2196f3),
+    const Color(0xff0069c0),
+    const Color(0xfffdd835),
+    const Color(0xffc6a700)
+  ];
+  final _random = Random();
+  Color _colorOne, _colorTwo;
 
   Future<String> getQuote() async {
     String baseUrl = 'http://api.kanye.rest/';
@@ -41,6 +56,8 @@ class _MyHomePageState extends State<MyHomePage> {
       var myQuote = Quote.fromJson(quoteMap);
       setState(() {
         _quote = myQuote.quote;
+        _colorOne = _gradientColors[_random.nextInt(_gradientColors.length)];
+        _colorTwo = _gradientColors[_random.nextInt(_gradientColors.length)];
       });
       return myQuote.quote;
     } catch (e) {
@@ -59,32 +76,63 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     this.getQuote();
+    this._colorOne = _gradientColors[_random.nextInt(_gradientColors.length)];
+    this._colorTwo = _gradientColors[_random.nextInt(_gradientColors.length)];
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(32.0),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                '$_quote',
-                style: Theme.of(context).textTheme.display2,
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Text(
-                  '- Kanye West',
-                  style: Theme.of(context).textTheme.title,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [_colorOne, _colorTwo],
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(32.0),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(top: 16.0),
+                  child: Text(
+                    'KUT IN',
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
-              ),
-            ],
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: _quote != null
+                        ? Text(
+                            '$_quote',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 34.0,
+                              fontWeight: FontWeight.bold,
+                              height: 1.25,
+                            ),
+                          )
+                        : CircularProgressIndicator(),
+                  ),
+                ),
+                Text(
+                  '- Kanye West',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 18.0,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
