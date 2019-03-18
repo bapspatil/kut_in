@@ -29,4 +29,4 @@ flutter:
   fonts:
     - family: Imperator
       fonts:
-        - asset: fonts/ImperatorBold.ttf
+        - asset: assets/fonts/ImperatorBold.ttf
