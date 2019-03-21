@@ -88,3 +88,5 @@ unlinked_spec.ds
 
 /outputs
 /android/gradle.properties
+/android/bapspatil-keystore.jks
+/android/key.properties
