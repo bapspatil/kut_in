@@ -16,6 +16,7 @@ Find out more about #FlutterCreate here: https://flutter.dev/create
 ## Packages Used
 
 * [http](https://pub.dartlang.org/packages/http)
+* [url_launcher](https://pub.dartlang.org/packages/url_launcher)
 * [flutter_launcher_icons](https://pub.dartlang.org/packages/flutter_launcher_icons)
 
 ## Developed By
