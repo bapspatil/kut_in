@@ -68,7 +68,6 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     getQuote();
-    _gradientColors.shuffle(_random);
     _colorOne = _gradientColors[0];
     _colorTwo = _gradientColors[1];
   }
@@ -90,14 +89,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: Padding(
-                        padding: const EdgeInsets.only(top: 16.0),
+                        padding: const EdgeInsets.only(top: 24.0),
                         child: Text('KUT IN'),
                       ),
                     ),
                     Align(
                       alignment: Alignment.centerRight,
                       child: IconButton(
-                        icon: Icon(Icons.info, color: Colors.white),
+                        padding: const EdgeInsets.only(top: 18.0),
+                        icon: Icon(Icons.info_outline, color: Colors.white),
                         onPressed: () {
                           Navigator.push(
                               context,

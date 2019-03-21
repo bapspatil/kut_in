@@ -27,7 +27,7 @@ class AboutScreen extends StatelessWidget {
             SizedBox(height: 20),
             GestureDetector(
               onTap: () { _openWebsite(); },
-              child: Text('bapspatil.com', style: TextStyle(fontSize: 18.0, backgroundColor: Colors.white, color: Colors.black)),
+              child: Text('bapspatil.com', style: TextStyle(fontSize: 18.0, decoration: TextDecoration.underline)),
             ),
           ],
         ),
