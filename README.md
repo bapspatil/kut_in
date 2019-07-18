@@ -7,6 +7,8 @@ A Flutter app that shows random, wise Kanye West quotes. 😉
 
 Find out more about #FlutterCreate here: https://flutter.dev/create
 
+You can also find my article about how to submit my article for this contest here: https://medium.com/flutter-community/how-to-submit-an-app-for-flutter-create-c12952120b67
+
 <a href='https://play.google.com/store/apps/details?id=com.bapspatil.kutin&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="30%" height="30%"/></a>
 
 ## Screenshots
